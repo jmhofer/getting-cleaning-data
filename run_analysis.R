@@ -1,10 +1,10 @@
 library(dplyr)
 
 # Retrieve the source data from the internet and unpack it locally.
-# This doesn't have to be done all the time...
+# This doesn't have to be done all the time, so you can comment this out after your initial download.
 
-#download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile="Dataset.zip", mode="wb")
-#dateDownloaded <- date() # downloaded on Fri Oct 23 10:30:50 2015
+download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile="Dataset.zip", mode="wb")
+dateDownloaded <- date() # downloaded on Fri Oct 23 10:30:50 2015
 
 unzip("Dataset.zip", exdir = ".")
 basePath <- "UCI HAR Dataset"
@@ -17,6 +17,7 @@ names(activities) = c("activityId", "Activity")
 featureInfo <- read.csv(paste(basePath, "features.txt", sep = "/"), header = FALSE, sep = " ")
 names(featureInfo) = c("featureId", "Feature")
 
+# collect the data we are interested in for each the test and training sets
 byMode <- lapply(c("test", "train"), function(mode) {
     
     # Compute the respective file paths.
@@ -25,7 +26,7 @@ byMode <- lapply(c("test", "train"), function(mode) {
     subjectId  <- sapply(readLines(paste(modePath, paste("subject_", mode, ".txt", sep = ""), sep = "/")), as.numeric)
     activityId <- sapply(readLines(paste(modePath, paste("y_", mode, ".txt", sep = ""), sep = "/")), as.numeric)
 
-    # Compute features we're interested in (mean and standard deviations).
+    # Retrieve only the features we are interested in (mean and standard deviations).
     meansAndStds <- which(grepl("\\-mean\\(\\)", featureInfo$Feature) | grepl("\\-std\\(\\)", featureInfo$Feature))
     
     # Read features as a fixed-width file, where each feature has a width of exactly 16 characters.
@@ -64,14 +65,14 @@ data <-
     select(-activityId) %>%                        # remove the now superfluous activity id
     renameVariables                                # rename variables so that they are more descriptive - this is *Step 4*
 
-write.table(data, file = "cleaned_up_1.csv", row.names = FALSE) # save data
+write.table(data, file = "cleaned_up_1.txt", row.names = FALSE) # save data
 
 # Next up, create an independent second tidy data set, grouped by activity and subject. - this is *Step 5*
 
 averaged <- data %>% 
-            rename(subjectId = `Subject ID`) %>% 
-            group_by(Activity, subjectId) %>% 
-            summarize_each(funs(mean)) %>% 
-            rename(`Subject ID` = subjectId)
+            rename(subjectId = `Subject ID`) %>% # for some reason, summarizing fails for backticked column names with spaces
+            group_by(Activity, subjectId) %>%    # group by activity and subject id 
+            summarize_each(funs(mean)) %>%       # average all other columns
+            rename(`Subject ID` = subjectId)     # rename column back to the nicer one
 
-write.table(averaged, file = "cleaned_up_2.csv", row.names = FALSE) # save tidy data, too
+write.table(averaged, file = "cleaned_up_2.txt", row.names = FALSE) # save tidy data, too

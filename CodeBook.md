@@ -25,110 +25,110 @@ for each activity and subject, the average over all individual variables was cal
 
 The resulting tidy data set contains 68 variables as follows:
 
-### Activity (1)
+#### Activity (1)
 
 The activity that was undertaken during the measurements. One of `WALKING`, `WALKING_UPSTAIRS`, `WALKING_DOWNSTAIRS`, `SITTING`, `STANDING` and `LAYING`.
 
-### Subject ID (2)
+#### Subject ID (2)
 
 The ID of the subject undertaking the measured activities (a number from 1 to 30).
 
-### Body Accelerator Mean X/Y/Z (Time Domain) (3, 4, 5)
+#### Body Accelerator Mean X/Y/Z (Time Domain) (3, 4, 5)
 
 Mean of the time-domain measurements of the body accelerator (linear acceleration) for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Standard Deviation X/Y/Z (Time Domain) (6, 7, 8)
+#### Body Accelerator Standard Deviation X/Y/Z (Time Domain) (6, 7, 8)
 
 Standard deviation of the time-domain measurements of the body accelerator for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Gravity Accelerator Mean X/Y/Z (Time Domain) (9, 10, 11)
+#### Gravity Accelerator Mean X/Y/Z (Time Domain) (9, 10, 11)
 
 Mean of the time-domain measurements of the gravity accelerator for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Gravity Accelerator Standard Deviation X/Y/Z (Time Domain) (12, 13, 14)
+#### Gravity Accelerator Standard Deviation X/Y/Z (Time Domain) (12, 13, 14)
 
 Standard deviation of the time-domain measurements of the gravity accelerator for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Jerk Mean X/Y/Z (Time Domain) (15, 16, 17)
+#### Body Accelerator Jerk Mean X/Y/Z (Time Domain) (15, 16, 17)
 
 Mean of the time-domain measurements of the body accelerator "jerk" value (linear acceleration derived in time) for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Jerk Standard Deviation X/Y/Z (Time Domain) (18, 19, 20)
+#### Body Accelerator Jerk Standard Deviation X/Y/Z (Time Domain) (18, 19, 20)
 
 Standard deviation of the time-domain measurements of the body accelerator "jerk" value (linear acceleration derived in time) for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Gyroscope Mean X/Y/Z (Time Domain) (21, 22, 23)
+#### Body Gyroscope Mean X/Y/Z (Time Domain) (21, 22, 23)
 
 Mean of the time-domain measurements of the body gyroscope (angular velocity) for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Gyroscope Standard Deviation X/Y/Z (Time Domain) (24, 25, 26)
+#### Body Gyroscope Standard Deviation X/Y/Z (Time Domain) (24, 25, 26)
 
 Standard deviation of the time-domain measurements of the body gyroscope for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Gyroscope Jerk Mean X/Y/Z (Time Domain) (27, 28, 29)
+#### Body Gyroscope Jerk Mean X/Y/Z (Time Domain) (27, 28, 29)
 
 Mean of the time-domain measurements of the body gyroscope "jerk" value (angular velocity derived in time) for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Gyroscope Jerk Standard Deviation X/Y/Z (Time Domain) (30, 31, 32)
+#### Body Gyroscope Jerk Standard Deviation X/Y/Z (Time Domain) (30, 31, 32)
 
 Standard deviation of the time-domain measurements of the body gyroscope "jerk" value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Magnitude Mean / Standard Deviation (Time Domain) (33, 34)
+#### Body Accelerator Magnitude Mean / Standard Deviation (Time Domain) (33, 34)
 
 Mean / standard deviation of the time-domain measurement of the body accelerator magnitude value (Euclidean norm of the `X`/`Y`/`Z` values).
 
-### Gravity Accelerator Magnitude Mean / Standard Deviation (Time Domain) (35, 36)
+#### Gravity Accelerator Magnitude Mean / Standard Deviation (Time Domain) (35, 36)
 
 Mean / standard deviation of the time-domain measurement of the gravity accelerator magnitude value.
 
-### Body Accelerator Jerk Magnitude Mean / Standard Deviation (Time Domain) (37, 38)
+#### Body Accelerator Jerk Magnitude Mean / Standard Deviation (Time Domain) (37, 38)
 
 Mean / standard deviation of the time-domain measurement of the body accelerator jerk magnitude value.
 
-### Body Gyroscope Magnitude Mean / Standard Deviation (Time Domain) (39, 40)
+#### Body Gyroscope Magnitude Mean / Standard Deviation (Time Domain) (39, 40)
 
 Mean / standard deviation of the time-domain measurement of the body gyroscope magnitude value.
 
-### Body Gyroscope Magnitude Jerk Mean / Standard Deviation (Time Domain) (41, 42)
+#### Body Gyroscope Magnitude Jerk Mean / Standard Deviation (Time Domain) (41, 42)
 
 Mean / standard deviation of the time-domain measurement of the body gyroscope jerk magnitude value.
 
-### Body Accelerator Mean X/Y/Z (Frequency Domain) (43, 44, 45)
+#### Body Accelerator Mean X/Y/Z (Frequency Domain) (43, 44, 45)
 
 Mean of the frequency-domain measurement (produced by a Fast Fourier Transform) of the body accelerator value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Standard Deviation X/Y/Z (Frequency Domain) (46, 47, 48)
+#### Body Accelerator Standard Deviation X/Y/Z (Frequency Domain) (46, 47, 48)
 
 Standard deviation of the frequency-domain measurement of the body accelerator value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Jerk Mean X/Y/Z (Frequency Domain) (49, 50, 51)
+#### Body Accelerator Jerk Mean X/Y/Z (Frequency Domain) (49, 50, 51)
 
 Mean of the frequency-domain measurement of the body accelerator jerk value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Jerk Standard Deviation X/Y/Z (Frequency Domain) (52, 53, 54)
+#### Body Accelerator Jerk Standard Deviation X/Y/Z (Frequency Domain) (52, 53, 54)
 
 Standard deviation of the frequency-domain measurement of the body accelerator jerk value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Gyroscope Mean X/Y/Z (Frequency Domain) (55, 56, 57)
+#### Body Gyroscope Mean X/Y/Z (Frequency Domain) (55, 56, 57)
 
 Mean of the frequency-domain measurement of the body gyroscope value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Gyroscope Standard Deviation X/Y/Z (Frequency Domain) (58, 59, 60)
+#### Body Gyroscope Standard Deviation X/Y/Z (Frequency Domain) (58, 59, 60)
 
 Standard deviation of the frequency-domain measurement of the body gyroscope value for each coordinate system axis (`X`/`Y`/`Z`).
 
-### Body Accelerator Magnitude Mean / Standard Deviation (Frequency Domain) (61, 62)
+#### Body Accelerator Magnitude Mean / Standard Deviation (Frequency Domain) (61, 62)
 
 Mean / Standard deviation of the frequency-domain measurement of the body accelerator magnitude value.
 
-### Body Accelerator Jerk Magnitude Mean / Standard Deviation (Frequency Domain) (63, 64)
+#### Body Accelerator Jerk Magnitude Mean / Standard Deviation (Frequency Domain) (63, 64)
 
 Mean / Standard deviation of the frequency-domain measurement of the body accelerator jerk magnitude value.
 
-### Body Gyroscope Magnitude Mean / Standard Deviation (Frequency Domain) (65, 66)
+#### Body Gyroscope Magnitude Mean / Standard Deviation (Frequency Domain) (65, 66)
 
 Mean / Standard deviation of the frequency-domain measurement of the body gyroscope magnitude value.
 
-### Body Gyroscope Jerk Magnitude Mean / Standard Deviation (Frequency Domain) (67, 68)
+#### Body Gyroscope Jerk Magnitude Mean / Standard Deviation (Frequency Domain) (67, 68)
 
 Mean / Standard deviation of the frequency-domain measurement of the body gyroscope jerk magnitude value.

@@ -31,7 +31,7 @@ The activity that was undertaken during the measurements. One of `WALKING`, `WAL
 
 ### Subject ID (2)
 
-The ID of the subject undertaking the measured activities.
+The ID of the subject undertaking the measured activities (a number from 1 to 30).
 
 ### Body Accelerator Mean X/Y/Z (Time Domain) (3, 4, 5)
 

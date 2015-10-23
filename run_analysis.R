@@ -3,11 +3,11 @@ library(dplyr)
 # Retrieve the source data from the internet and unpack it locally.
 # This doesn't have to be done all the time...
 
-if (!file.exists("data")) dir.create("data")
-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile="data/Dataset.zip", mode="wb")unzip("data/Dataset.zip", exdir = "data")
-dateDownloaded <- date() # downloaded on Sun Oct 18 13:51:36 2015
+#download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile="Dataset.zip", mode="wb")
+#dateDownloaded <- date() # downloaded on Fri Oct 23 10:30:50 2015
 
-basePath <- "data/UCI HAR Dataset"
+unzip("Dataset.zip", exdir = ".")
+basePath <- "UCI HAR Dataset"
 
 # read activities (names and ids) from file
 activities <- read.csv(paste(basePath, "activity_labels.txt", sep = "/"), header = FALSE, sep = " ")
@@ -22,7 +22,7 @@ byMode <- lapply(c("test", "train"), function(mode) {
     # Compute the respective file paths.
     modePath <- paste(basePath, mode, sep = "/")
 
-    subjectId  <- readLines(paste(modePath, paste("subject_", mode, ".txt", sep = ""), sep = "/"))
+    subjectId  <- sapply(readLines(paste(modePath, paste("subject_", mode, ".txt", sep = ""), sep = "/")), as.numeric)
     activityId <- sapply(readLines(paste(modePath, paste("y_", mode, ".txt", sep = ""), sep = "/")), as.numeric)
 
     # Compute features we're interested in (mean and standard deviations).
@@ -38,11 +38,40 @@ byMode <- lapply(c("test", "train"), function(mode) {
     data.frame(subjectId, activityId, features) # data frame per set (one for test, one for training)
 })
 
+renameVariables <- function(data) {
+    names <- names(data)
+    
+    names <- gsub("\\.+", " ", names)                        # convert dots to spaces
+    names <- gsub("(.*?) *$", "\\1", names)                  # remove trailing spaces
+    names <- gsub("(.*)BodyBody(.*)", "\\1Body\\2", names)   # remove duplicate "Body" labels
+    names <- gsub("^t(.*)", "\\1 (Time Domain)", names)      # label variables as time domain based
+    names <- gsub("^f(.*)", "\\1 (Frequency Domain)", names) # label variables as frequency domain based
+    names <- gsub("subjectId", "Subject ID", names)          # improve subject id labeling
+    names <- gsub("Acc", " Accelerator", names)              # remove abbreviations and insert spaces for clarity
+    names <- gsub("Gyro", " Gyroscope", names)
+    names <- gsub("Jerk", " Jerk", names)
+    names <- gsub("Mag", " Magnitude", names)
+    names <- gsub("mean", "Mean", names)
+    names <- gsub("std", "Standard Deviation", names)
+    
+    names(data) <- names
+    data
+}
+
 data <- 
     rbind_all(byMode) %>%                          # merge test and training data - this is *Step 1*
     left_join(activities, by = "activityId") %>%   # join with activity names - this is *Step 3*
     select(-activityId) %>%                        # remove the now superfluous activity id
-    print
+    renameVariables                                # rename variables so that they are more descriptive - this is *Step 4*
 
-## TODO more descriptive column names (?) (Step 4)
-## TODO average each variable in a second tidy data set (Step 5)
+write.table(data, file = "cleaned_up_1.csv", row.names = FALSE) # save data
+
+# Next up, create an independent second tidy data set, grouped by activity and subject. - this is *Step 5*
+
+averaged <- data %>% 
+            rename(subjectId = `Subject ID`) %>% 
+            group_by(Activity, subjectId) %>% 
+            summarize_each(funs(mean)) %>% 
+            rename(`Subject ID` = subjectId)
+
+write.table(averaged, file = "cleaned_up_2.csv", row.names = FALSE) # save tidy data, too
